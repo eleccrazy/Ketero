@@ -1,5 +1,11 @@
 #!/usr/bin/python3
-""" console for managing models, It is used only for development purpose"""
+"""
+File: test_user.py
+Desc: This module contains console for managing models, It is
+      used only for development purposes
+Authors: Gizachew Bayness, Joseph Tapano, and Helina Gebreyes
+Date Created: Dec 11 2022
+"""
 
 import cmd
 import models

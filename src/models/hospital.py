@@ -2,7 +2,7 @@
 """
 file: hospital.py
 Desc: Hospital model
-Authors: Gizachew Baynss, Joseph Tapano, and Helina Gebreyes
+Authors: Gizachew Bayness, Joseph Tapano, and Helina Gebreyes
 Date Created: Dec 9 2022
 """
 from models.base import BaseModel, Base
@@ -13,7 +13,7 @@ from sqlalchemy import (
     Integer,
     Float,
     Table
-    )
+)
 from sqlalchemy.orm import relationship
 
 

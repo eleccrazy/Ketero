@@ -2,7 +2,7 @@
 """
 file: base.py
 Desc: Base model which will be shared among other models
-Authors: Gizachew Baynss, Joseph Tapano, and Helina Gebreyes
+Authors: Gizachew Bayness, Joseph Tapano, and Helina Gebreyes
 Date Created: Dec 9 2022
 """
 

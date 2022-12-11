@@ -2,7 +2,7 @@
 """
 file: service.py
 Desc: Service model
-Authors: Gizachew Baynss, Joseph Tapano, and Helina Gebreyes
+Authors: Gizachew Bayness, Joseph Tapano, and Helina Gebreyes
 Date Created: Dec 9 2022
 """
 from models.base import BaseModel, Base

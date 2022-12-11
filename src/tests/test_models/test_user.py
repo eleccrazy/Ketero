@@ -4,7 +4,7 @@
 File: test_user.py
 Desc: This module contains all possible testcases for the user.py
       module in the models package. It uses the standard unittest.
-Authors: Gizachew Baynss, Joseph Tapano, and Helina Gebreyes
+Authors: Gizachew Bayness, Joseph Tapano, and Helina Gebreyes
 Date Created: Dec 11 2022
 """
 

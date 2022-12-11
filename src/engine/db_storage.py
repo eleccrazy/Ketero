@@ -2,7 +2,7 @@
 """
 file: db_storage.py
 Desc: Storage engine for the app
-Authors: Gizachew Baynss, Joseph Tapano, and Helina Gebreyes
+Authors: Gizachew Bayness, Joseph Tapano, and Helina Gebreyes
 Date Created: Dec 10 2022
 """
 
@@ -26,7 +26,7 @@ class Storage():
             "mysql+mysqldb://ketero_user:ketero@localhost/ketero_db",
             pool_pre_ping=True
         )
-    
+
     def all(self, cls=None):
         """Query on the current database session"""
         if cls is None:
@@ -40,7 +40,7 @@ class Storage():
                 cls = eval(cls)
             objs = self.__session.query(cls)
         return {"{}.{}".format(type(o).__name__, o.id): o for o in objs}
-    
+
     def new(self, obj):
         """Add new obj to the current database session."""
         self.__session.add(obj)
@@ -54,7 +54,7 @@ class Storage():
         if obj is not None:
             self.__session.delete(obj)
             self.__session.commit()
-    
+
     def reload(self):
         """reloads data from the database"""
         Base.metadata.create_all(self.__engine)
@@ -65,7 +65,7 @@ class Storage():
     def close(self):
         """close the current session"""
         self.__session.close()
-    
+
     def get(self, cls, id):
         """Retrives one object based on class name and id"""
         objs = self.all()
