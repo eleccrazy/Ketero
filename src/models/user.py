@@ -18,11 +18,11 @@ from hashlib import md5
 class User(BaseModel, Base):
     """Represents a User"""
     __tablename__ = "users"
-    first_name = Column(String(128), nullable=False)
-    last_name = Column(String(128), nullable=False)
+    first_name = Column(String(128), nullable=True)
+    last_name = Column(String(128), nullable=True)
     email = Column(String(128), nullable=False, unique=True)
     password = Column(String(128), nullable=False)
-    phone = Column(String(10), nullable=False, unique=True)
+    phone = Column(String(10), nullable=True, unique=True)
     orders = relationship("Order", backref="user")
 
     def __init__(self, *args, **kwargs):
