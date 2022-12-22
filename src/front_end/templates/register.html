@@ -1,0 +1,91 @@
+{% extends 'base.html' %} {% block head_content %}
+<link rel="stylesheet" href="../static/styles/register.css" />
+<link rel="stylesheet" href="../static/styles/style.css" />
+<link href="../static/assets/css/style.css" rel="stylesheet" />
+{% endblock %} {% block body_content %}
+<div
+  class="wrapper"
+  style="background-image: url('../static/assets/images/login/heart.png')"
+>
+  <div class="inner">
+    <form action="" method="POST">
+      <h3>Register Today</h3>
+      <div class="form-group">
+        <div class="form-wrapper">
+          <label for="fistName">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            name="firstName"
+            placeholder="First Name"
+            required
+          />
+        </div>
+        <div class="form-wrapper">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            name="lastName"
+            placeholder="Last Name"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-wrapper">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="example@example.com"
+          required
+        />
+      </div>
+      <div class="form-wrapper">
+        <label for="password1">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password1"
+          name="password1"
+          placeholder="Password"
+          required
+        />
+      </div>
+      <div class="form-wrapper">
+        <label for="password2">Confirm Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password2"
+          name="password2"
+          placeholder="Confirm Password"
+          required
+        />
+      </div>
+      <div class="form-wrapper">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="phoneNumber"
+          name="phoneNumber"
+          placeholder="0911111111"
+          required
+        />
+      </div>
+      <!-- <div class="checkbox">
+        <label>
+          <input type="checkbox" /> I caccept the Terms of Use & Privacy Policy.
+          <span class="checkmark"></span>
+        </label>
+      </div> -->
+      <button type="submit" class="btn-submit">Register Now</button>
+    </form>
+  </div>
+</div>
+{% endblock %} {% block script_content%} {% endblock %}
