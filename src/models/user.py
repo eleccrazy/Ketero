@@ -13,9 +13,10 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import relationship
 from hashlib import md5
+from flask_login import UserMixin
 
 
-class User(BaseModel, Base):
+class User(BaseModel, Base, UserMixin):
     """Represents a User"""
     __tablename__ = "users"
     first_name = Column(String(128), nullable=True)
