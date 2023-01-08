@@ -9,7 +9,7 @@ const cardTemplate =
   '          class="card card-hover shadow-lg p-3 mb-5 bg-white"' +
   '        >' +
   '          <img' +
-  '            src="{{ image_url}}"' +
+  '            src="{{ image_url }}"' +
   '            class="card-img-top"' +
   '            alt="Image of {{ name }} hospital"' +
   '            style="height: 300px;' +
@@ -36,24 +36,20 @@ function addFilter(hospital) {
 $(function () {
   let cityId = [];
   let serviceId = [];
+
   $('a#all-cities-filter').click(function () {
     $('div.city-filter').empty();
-    $.ajax({
-      url: 'http://0.0.0.0:5001/api/v1/hospital_search',
-      type: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify({}),
-      success: function (data) {
-        data.forEach((hospital) => {
-          $('div.city-filter').append(addFilter(hospital));
-        });
-      },
-    });
+    allHospital();
+  });
+
+  $('a#all-services-filter').click(function () {
+    $('div.city-filter').empty();
+    allHospital();
   });
 
   $('a#city_drop_downlink').click(function () {
     if ($(this).attr('data-type') === 'cities') {
-      cityId.push($(this).attr('data-id'));
+      cityId[0] = $(this).attr('data-id');
       $('div.city-filter').empty();
       $.ajax({
         url: 'http://0.0.0.0:5001/api/v1/hospital_search',
@@ -68,9 +64,10 @@ $(function () {
       });
     }
   });
+
   $('a#service_drop_downlink').click(function () {
     if ($(this).attr('data-type') === 'services') {
-      serviceId.push($(this).attr('data-id'));
+      serviceId[0] = $(this).attr('data-id');
       $('div.city-filter').empty();
       $.ajax({
         url: 'http://0.0.0.0:5001/api/v1/hospital_search',
@@ -85,6 +82,10 @@ $(function () {
       });
     }
   });
+  allHospital();
+});
+
+const allHospital = () => {
   $.ajax({
     url: 'http://0.0.0.0:5001/api/v1/hospital_search',
     type: 'POST',
@@ -96,4 +97,4 @@ $(function () {
       });
     },
   });
-});
+};
