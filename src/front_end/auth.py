@@ -22,12 +22,12 @@ cache_id = str(uuid4())
 def login():
     if request.method == "POST":
         data = request.form
-        email = data.get('email')
+        username = data.get('username')
         password = md5(data.get('password').encode()).hexdigest()
         users = storage.all(User).values()
         user = None
         for u in users:
-            if u.email == email:
+            if u.username == username:
                 user = u
                 break
         if user:
@@ -38,11 +38,12 @@ def login():
             else:
                 flash("Incorrect Password", category='error')
         else:
-            flash("Incorrect email address", category='error')
+            flash("Incorrect username", category='error')
     return render_template("login.html", cache_id=cache_id, user=current_user)
 
 
 @auth.route('/logout', strict_slashes=False)
+@login_required
 def logut():
     logout_user()
     return redirect(url_for('auth.login'))
@@ -52,29 +53,35 @@ def logut():
 def register():
     if request.method == 'POST':
         users = storage.all(User).values()
+        usernames = [user.username for user in users]
         emails = [user.email for user in users]
-        phoneNumbers = [user.phone for user in users]
+        phone_numbers = [user.phone for user in users]
         data = request.form
         email = data.get('email')
-        firstName = data.get('firstName')
-        lastName = data.get('lastName')
+        first_name = data.get('firstName')
+        last_name = data.get('lastName')
         password1 = data.get('password1')
         password2 = data.get('password2')
-        phoneNumber = data.get('phoneNumber')
-        if email in emails:
+        phone_number = data.get('phoneNumber')
+        username = data.get('username')
+
+        if username in usernames:
+            flash("Username already exists", category="error")
+        elif email in emails:
             flash("Email address already exists", category='error')
         elif len(password1) < 6 or len(password1) > 15:
             flash("Password must be 6 - 15 characters length",
                   category='error')
         elif password1 != password2:
             flash("Passwords don't match", category='error')
-        elif len(phoneNumber) != 10:
+        elif len(phone_number) != 10:
             flash("Please insert a valid phone number", category='error')
-        elif phoneNumber in phoneNumbers:
+        elif phone_number in phone_numbers:
             flash("Phone number already exists", category='error')
         else:
-            info = {"first_name": firstName, "last_name": lastName,
-                    "email": email, "phone": phoneNumber, "password": password1}
+            info = {"first_name": first_name, "last_name": last_name,
+                    "email": email, "phone": phone_number, "password": password1,
+                    "username": username}
             new_account = User(**info)
             new_account.save()
             login_user(new_account, remember=True)

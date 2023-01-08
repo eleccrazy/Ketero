@@ -1,5 +1,399 @@
 {% extends 'base.html' %} {% block head_content %}
-<link href="../static/assets/css/style.css" rel="stylesheet" />
+<link
+  href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="../static/styles/details.css" />
 {% endblock %} {% block body_content %}
-<h1>Details Page</h1>
+<!-- ======= Hero Section ======= -->
+<section id="hero2" class="d-flex align-items-center">
+  <div class="container">
+    <h1>Welcome to {{ hospital.name }} Hospital</h1>
+    <h2>A Hospital located in {{ city_name }}, Ethiopia</h2>
+  </div>
+</section>
+<!-- End Hero -->
+<main id="main2">
+  <!-- ======= Why Us Section ======= -->
+  <section id="why-us" class="why-us">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 d-flex align-items-stretch">
+          <div class="content">
+            <h3>Why Choose {{ hospital.name }}?</h3>
+            <p>{{ hospital.description }}</p>
+          </div>
+        </div>
+        <div class="col-lg-8 d-flex align-items-stretch">
+          <div class="icon-boxes d-flex flex-column justify-content-center">
+            <div class="row">
+              <div class="col-xl-4 d-flex align-items-stretch">
+                <div class="icon-box mt-4 mt-xl-0">
+                  <img
+                    src="../static/assets/images/measure.jpg"
+                    alt="Image of meter"
+                    width="100%"
+                    height="auto"
+                  />
+                  <button class="btn-get-started" id="btn-see-distance">
+                    How far is it?
+                  </button>
+                  <p id="show-distance">
+                    See the distance between your current location and {{
+                    hospital.name }}
+                  </p>
+                </div>
+              </div>
+              <div class="col-xl-4 d-flex align-items-stretch">
+                <div class="icon-box mt-4 mt-xl-0">
+                  <img
+                    src="../static/assets/images/card2.png"
+                    alt="Image of hospital card"
+                    width="100%"
+                    height="auto"
+                  />
+                  <button
+                    class="btn-get-started"
+                    id="btn-order-cards"
+                    type="button"
+                    data-id="{{ user.id }}"
+                  >
+                    Order Your Cards
+                  </button>
+                  <p id="show-price-hospital">ETB {{ hospital.card_price }}</p>
+                </div>
+              </div>
+              <div class="col-xl-4 d-flex align-items-stretch">
+                <div class="icon-box mt-4 mt-xl-0">
+                  <img
+                    src="../static/assets/images/services.png"
+                    alt="Image of hospital card"
+                    width="100%"
+                    height="auto"
+                  />
+                  <a
+                    href="#services"
+                    class="btn-get-started"
+                    id="link-to-service"
+                    >Our Services</a
+                  >
+                  <p id="total-services">
+                    At {{ hospital.name }}, we deliver {{ number_of_services }}
+                    core services
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End .content-->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Why Us Section -->
+
+  <!-- ======= Counts Section ======= -->
+  <section id="counts" class="counts">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="count-box">
+            <i class="fas fa-user-md"></i>
+            <span>{{ hospital.number_of_doctors }}</span>
+            <p>Doctors</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+          <div class="count-box">
+            <i class="far fa-hospital"></i>
+            <span>{{ hospital.number_of_departments }}</span>
+            <p>Departments</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+          <div class="count-box">
+            <i class="fas fa-flask"></i>
+            <span>{{ hospital.number_of_research_labs }}</span>
+            <p>Research Labs</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+          <div class="count-box">
+            <i class="fas fa-award"></i>
+            <span>{{ hospital.number_of_awards }}</span>
+            <p>Awards</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Counts Section -->
+
+  <!-- ======= Services Section ======= -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Core Services</h2>
+        <p>
+          The following are core services that can be found at {{ hospital.name
+          }} Hospital. Apart from these services, you can find many other
+          services, support, and care at our hospital.
+        </p>
+      </div>
+
+      <div class="row">
+        {% for service in hospital.services %}
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+          <div class="icon-box">
+            <div class="icon"><i class="fas fa-hospital-user"></i></div>
+            <h4><a href="#services">{{ service.name }}</a></h4>
+            <p>{{ service.description }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!-- End Services Section -->
+
+  <!-- ======= Appointment Section ======= -->
+  <section id="appointment" class="appointment section-bg">
+    <div class="container">
+      <div class="section-title">
+        <h2>Make an Appointment</h2>
+        <p>Book online appointment with one of our best doctors.</p>
+      </div>
+
+      <form method="POST" class="php-email-form email-form">
+        <div class="row">
+          <div class="col-md-4 form-group">
+            <input
+              type="text"
+              name="full-name"
+              class="form-control"
+              id="full-name"
+              placeholder="Your Name"
+              required
+            />
+          </div>
+          <div class="col-md-4 form-group mt-3 mt-md-0">
+            <input
+              type="email"
+              class="form-control"
+              name="user-email-address"
+              id="user-email-address"
+              placeholder="Your Email"
+              required
+            />
+          </div>
+          <div class="col-md-4 form-group mt-3 mt-md-0">
+            <input
+              type="tel"
+              class="form-control"
+              name="user-phone"
+              id="user-phone"
+              placeholder="Your Phone"
+              required
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 form-group mt-3">
+            <input
+              type="datetime"
+              name="date"
+              class="form-control datepicker"
+              id="date"
+              placeholder="Appointment Date"
+              required
+            />
+          </div>
+          <div class="col-md-4 form-group mt-3">
+            <select name="department" id="department" class="form-select">
+              <option value="">Select Department</option>
+              <option value="Department 1">Department 1</option>
+              <option value="Department 2">Department 2</option>
+              <option value="Department 3">Department 3</option>
+            </select>
+          </div>
+          <div class="col-md-4 form-group mt-3">
+            <select name="doctor" id="doctor" class="form-select">
+              <option value="">Select Doctor</option>
+              <option value="Doctor 1">Doctor 1</option>
+              <option value="Doctor 2">Doctor 2</option>
+              <option value="Doctor 3">Doctor 3</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <textarea
+            class="form-control"
+            name="message"
+            rows="5"
+            placeholder="Message (Optional)"
+          ></textarea>
+        </div>
+        <div class="my-3">
+          <div class="loading">Loading</div>
+          <div class="error-message"></div>
+          <div class="sent-message">
+            Your appointment has been done. Thank you!
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit">Make an Appointment</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!-- End Appointment Section -->
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Stay connect with us</h2>
+        <p>
+          Still not sure about ordering cards or which doctor to pick for an
+          appointment? Not a problem. As your personalized patient manager,
+          we’re here to answer all your questions, and care about your helth. If
+          you want to visit us, you can use the following map.
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <iframe
+        src="{{ hospital.location }}"
+        width="100%"
+        height="480"
+        frameborder="0"
+        style="border: 0"
+        allowfullscreenwidth="600"
+      ></iframe>
+    </div>
+
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-lg-4">
+          <div class="info">
+            <div class="address">
+              <i class="bi bi-geo-alt"></i>
+              <h4>Location:</h4>
+              <p>{{ city_name }}, Ethiopia</p>
+            </div>
+
+            <div class="email">
+              <i class="bi bi-envelope"></i>
+              <h4>Email:</h4>
+              <p>{{ hospital.email_address }}</p>
+            </div>
+
+            <div class="phone">
+              <i class="bi bi-phone"></i>
+              <h4>Call:</h4>
+              <p>{{ hospital.phone }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8 mt-5 mt-lg-0">
+          <form method="POST" class="php-email-form">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  id="name"
+                  placeholder="Your Name"
+                  required
+                />
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  placeholder="Your Email"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input
+                type="text"
+                class="form-control"
+                name="subject"
+                id="subject"
+                placeholder="Subject"
+                required
+              />
+            </div>
+            <div class="form-group mt-3">
+              <textarea
+                class="form-control"
+                name="message"
+                rows="5"
+                placeholder="Message"
+                required
+              ></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">
+                Your message has been sent. Thank you!
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Contact Section -->
+</main>
+<!-- End #main -->
+<!-- Modal for ordering errors -->
+<div
+  class="modal fade"
+  id="modalCompleteYourProfile"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading" id="modal-error-message"></p>
+      </div>
+
+      <div class="modal-footer flex-center justify-content-center">
+        <a
+          type="button"
+          class="btn btn-danger waves-effect"
+          data-dismiss="modal"
+          >Ok</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of complete profile modal -->
+{% endblock %} {% block script_content %}
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"
+></script>
+<script src="../static/script/location.js"></script>
+<script src="../static/script/details.js"></script>
 {% endblock %}

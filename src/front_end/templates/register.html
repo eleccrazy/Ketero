@@ -1,7 +1,5 @@
 {% extends 'base.html' %} {% block head_content %}
 <link rel="stylesheet" href="../static/styles/register.css" />
-<link rel="stylesheet" href="../static/styles/style.css" />
-<link href="../static/assets/css/style.css" rel="stylesheet" />
 {% endblock %} {% block body_content %}
 <div
   class="wrapper"
@@ -12,7 +10,7 @@
       <h3>Register Today</h3>
       <div class="form-group">
         <div class="form-wrapper">
-          <label for="fistName">First Name</label>
+          <label for="firstName">First Name</label>
           <input
             type="text"
             class="form-control"
@@ -33,6 +31,17 @@
             required
           />
         </div>
+      </div>
+      <div class="form-wrapper">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          name="username"
+          placeholder="username"
+          required
+        />
       </div>
       <div class="form-wrapper">
         <label for="email">Email</label>
@@ -78,12 +87,6 @@
           required
         />
       </div>
-      <!-- <div class="checkbox">
-        <label>
-          <input type="checkbox" /> I caccept the Terms of Use & Privacy Policy.
-          <span class="checkmark"></span>
-        </label>
-      </div> -->
       <button type="submit" class="btn-submit">Register Now</button>
     </form>
   </div>

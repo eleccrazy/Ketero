@@ -12,6 +12,7 @@ from sqlalchemy import (
     ForeignKey,
     Integer,
     Float,
+    TEXT,
     Table
 )
 from sqlalchemy.orm import relationship
@@ -33,13 +34,21 @@ class Hospital(BaseModel, Base):
     """Representation for Hospitals"""
 
     __tablename__ = "hospitals"
+
+    # Required attributes to register a new hospital to the ketero App.
     name = Column(String(128), nullable=False)
-    description = Column(String(25000), nullable=True)
+    description = Column(TEXT, nullable=True)
     card_price = Column(Integer, nullable=False, default=0)
     number_of_doctors = Column(Integer, nullable=False, default=0)
-    image_url = Column(String(1024), nullable=False)
+    image_url = Column(String(20000), nullable=False)
     lattitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
+    number_of_departments = Column(Integer, nullable=False, default=0)
+    number_of_awards = Column(Integer, nullable=True, default=0)
+    number_of_research_labs = Column(Integer, nullable=True, default=0)
+    email_address = Column(String(128), nullable=False)
+    phone = Column(String(10), nullable=False)
+    location = Column(String(20000), nullable=False)
     city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
 
     orders = relationship("Order", backref="hospital",

@@ -12,7 +12,7 @@ from models.service import Service
 from models.hospital import Hospital
 
 
-@app_views.route('/hospitals/<hospital_id>/services', methods=['GET', 'POST'])
+@app_views.route('/hospitals/<hospital_id>/services', methods=['GET', 'Post'])
 def multiple_services_per_hospital(hospital_id):
     """Handles HTTP requests for multiple services linked to a hospital"""
     hospital = storage.get(Hospital, hospital_id)

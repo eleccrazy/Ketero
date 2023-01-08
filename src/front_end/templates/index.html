@@ -1,18 +1,11 @@
 {% extends 'base.html' %} {% block head_content %}
-<script src="../static/script/index.js"></script>
 <link href="../static/assets/img/favicon.png" rel="icon" />
 <link href="../static/assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
-<link rel="stylesheet" href="../static/styles/style.css" />
-<link href="../static/assets/css/style.css" rel="stylesheet" />
 {% endblock %} {% block body_content %}
 <!-- ======= hero Section ======= -->
 <section id="hero">
   <div class="hero-content">
     <h2>We Care<span> About Your </span><br />Health</h2>
-    <div>
-      <!-- <a href="#about" class="btn-get-started scrollto">Get Started</a>
-      <a href="#portfolio" class="btn-projects scrollto">Our Projects</a> -->
-    </div>
   </div>
   <div class="hero-slider swiper">
     <div class="swiper-wrapper">
@@ -60,66 +53,35 @@
 
         <div class="col-lg-6 content">
           <h2>Making health care more accessible for you!</h2>
-          <h3>
-            Here are the ways Ketero will improve your health access
-          </h3>
+          <h3>Here are the ways Ketero will improve your health access</h3>
 
           <ul>
             <li>
-              <i class="bi bi-check-circle"></i> Find the best hospital near you providing the service you need
+              <i class="bi bi-check-circle"></i> Find the best hospital near you
+              providing the service you need
             </li>
             <li>
               <i class="bi bi-check-circle"></i> Order your hospital card online
             </li>
             <li>
-              <i class="bi bi-check-circle"></i> Book an appointment for the service you need from where ever you are.
+              <i class="bi bi-check-circle"></i> Book an appointment for the
+              service you need from where ever you are.
             </li>
           </ul>
         </div>
       </div>
     </div>
   </section>
-  <!-- End About Section -->
-  <div class="container"></div>
   <div class="container">
-    <div class="row">
-      {% for hospital in hospitals %}
-      <div
-        class="col-12 col-md-6 col-lg-4"
-        style="margin-top: 30px"
-        data-aos="fade-up"
-      >
-        <div
-          class="card card-hover shadow-lg p-3 mb-5 bg-white"
-          style="border-radius: 35px 80px"
-        >
-          <img
-            src="{{ hospital.image_url}}"
-            class="card-img-top"
-            alt="Image of {{ hospital.name }} hospital"
-            style="height: 300px; border-radius: 25px 60px"
-          />
-          <div class="card-body">
-            <h5 class="card-title">{{ hospital.name }} Hospital</h5>
-            <p class="card-text">Card Price: ETB {{ hospital.card_price }}</p>
-            <a
-              href="/details"
-              class="btn btn-success"
-              style="border-radius: 20px"
-              >See More</a
-            >
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
+    <div class="row city-filter"></div>
   </div>
   <section id="contact">
     <div class="container">
       <div class="section-header">
         <h2>Contact Us</h2>
         <p>
-          Please feel free to contact us with the contact info below if you have any questions, comments and suggestions. 
+          Please feel free to contact us with the contact info below if you have
+          any questions, comments and suggestions.
         </p>
       </div>
 
@@ -138,7 +100,7 @@
           <div class="contact-phone">
             <i class="bi bi-phone"></i>
             <h3>Phone Number</h3>
-            <p><a href="tel:+251918309763">+251 918 3097 63</a></p>
+            <p><a href="tel:+251963364347">+251 963 3643 47</a></p>
           </div>
         </div>
 
@@ -148,7 +110,7 @@
             <h3>Email</h3>
             <p>
               <a href="mailto:eleccrazy24@gmail.com"
-                >mailto@health.ketero.com</a
+                >info@ketero.gizachew-bayness.tech</a
               >
             </p>
           </div>
@@ -169,12 +131,7 @@
 
     <div class="container">
       <div class="form">
-        <form
-          action="forms/contact.php"
-          method="post"
-          role="form"
-          class="php-email-form"
-        >
+        <form method="post" role="form" class="php-email-form">
           <div class="row">
             <div class="form-group col-md-6">
               <input
@@ -234,4 +191,6 @@
   </section>
   <!-- End Contact Section -->
 </main>
-{% endblock %} {% block script_content %} {% endblock %}
+{% endblock %} {% block script_content %}
+<script src="../static/script/filter.js"></script>
+{% endblock %}

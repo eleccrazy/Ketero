@@ -25,7 +25,6 @@
     />
 
     <!-- Template Main CSS File -->
-    <link href="../static/assets/css/style.css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700"
       rel="stylesheet"
@@ -53,6 +52,7 @@
       href="../static/assets/vendor/swiper/swiper-bundle.min.css"
       rel="stylesheet"
     />
+    <link href="../static/assets/css/style.css" rel="stylesheet" />
     {% block head_content %} {% endblock %}
     <title>Ketero</title>
   </head>
@@ -84,8 +84,8 @@
                     ><span>By City</span> <i class="bi bi-chevron-right"></i
                   ></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">All Cities</a></li>
-                    {% for city in cities%}
+                    <li><a href="#" id="all-cities-filter">All Cities</a></li>
+                    {% for city in cities %}
                     <li>
                       <a
                         id="city_drop_downlink"
@@ -103,10 +103,19 @@
                   <a href="#"
                     ><span>By Service</span> <i class="bi bi-chevron-right"></i
                   ></a>
-                  <ul class="dropdown-menu">
+                  <ul class="dropdown-menu dropdwon-menu-item">
                     <li><a href="#">All Services</a></li>
                     {% for service in services %}
-                    <li><a href="#">{{ service.name }}</a></li>
+                    <li>
+                      <a
+                        id="service_drop_downlink"
+                        data-type="services"
+                        data-id="{{ service.id }}"
+                        data-name="{{ service.name }}"
+                        href="#"
+                        >{{ service.name }}</a
+                      >
+                    </li>
                     {% endfor %}
                   </ul>
                 </li>
@@ -119,13 +128,16 @@
               <ul>
                 {% if user.is_authenticated %}
                 <li>
-                  <a href="/profile"
+                  <a href="/profile?user_id={{ user.id }}"
                     ><span class="fa-stack fa-lg"
-                      ><i class="fa-solid fa-user"></i> {{
-                      user.first_name}}</span
+                      ><i class="fa-solid fa-user"></i> {{ user.username
+                      }}</span
                     ></a
                   >
                 </li>
+                {% if user.id == "3783a33b-2366-4794-bac7-c156c7ce7b15" %}
+                <li><a href="/admin">Admin</a></li>
+                {% endif %}
                 <li><a href="/logout" id="logout">Logout</a></li>
                 {% else %}
                 <li><a href="/sign-in" id="login">Login</a></li>
@@ -160,6 +172,18 @@
     </div>
     <!-- End Header -->
     {% block body_content %} {% endblock%}
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="container">
+        <div class="copyright">
+          Copyright &copy; 2023<strong> Ketero</strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          Designed by <a href="#footer">The ketero team</a>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -187,6 +211,8 @@
     <script src="../static/assets/js/main.js"></script>
     <script src="../static/assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="../static/assets/js/hider.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
     {% block script_content%} {% endblock %}
   </body>
 </html>

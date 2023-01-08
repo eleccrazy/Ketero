@@ -261,4 +261,21 @@ button:hover:before {
   }
 }
 
-/*# sourceMappingURL=style.css.map */
+.text-center {
+    text-align: center !important;
+  }
+
+  .dont-have-an-account {
+    margin-top: 30px;
+    padding-left: 45px;
+  }
+
+  .dont-have-an-account p {
+    font-size: 22sp !important;
+  }
+  .dont-have-an-account a {
+    box-sizing: border-box;
+    font-family: "Muli-Regular";
+    font-size: 13px;
+    color: #0d6305;
+  }
