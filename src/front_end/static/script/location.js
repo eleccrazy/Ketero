@@ -1,3 +1,16 @@
+/**
+ * The following code uses the Haversine formula for calculating the distance
+ * between the user and the targeted hospital.
+ *
+ * The haversine formula determines the great-circle distance between two points
+ * on a sphere given their longitudes and latitudes. The formula calcultates the
+ * distance between two points on a sphere as the crow flies (straight-line distance).
+ *
+ * The result from the following calculation doesn't comply with the actual driving
+ * distance between two points. The result will be the shortest distance between user's
+ * location and the target hospital.
+ */
+
 $(function () {
   // Get the id of the hospital object
   const urlParams = new URLSearchParams(window.location.search);
