@@ -32,6 +32,7 @@ The idea was inspired by the fact that this service does not exist in Ethiopia w
 - Users can edit their profile
 - Users can see the exact location of a hospital on Google Maps directly from the site
 - Admins can add, edit and delete hospitals
+- A python console used to directly interact with the database
 
 ## Installation
 
@@ -44,14 +45,8 @@ git clone https://github.com/eleccrazy/Ketero.git
 - Change the directory
 
 ```bash
-cd Ketero
+cd Ketero/src
 ```
-
-- Create a virtual environment
-
-  ```bash
-  python3 -m venv venv
-  ```
 
 - Install the dependencies
 
@@ -65,18 +60,25 @@ cd Ketero
 mysql -u root -p < setup_ketero.sql
 ```
 
-- Run the application
+- Run the application.
 
 Run the flask application
 
 ```
 python3 -m front_end.index
-```
-
-Run the api. Set the environment variable KETERO_API_PORT to 5001 before running the app
 
 ```
-    KETERO_API_PORT=5001 python3 -m api.v1.app
+
+Run the api.
+
+```
+    python3 -m api.v1.app
+```
+
+Run the console (Custome python console for interacting with the database)
+
+```
+    python3 manage.py
 ```
 
 ## Usage
